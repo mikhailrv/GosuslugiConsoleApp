@@ -8,4 +8,5 @@ UseCase Диаграмма
 
 Госслужащий - сотрудник МВД, обрабатывающий заявки.
 
-![ofG8G-oVOU0](https://github.com/user-attachments/assets/f1a876b9-d352-45f0-9019-5fbf0e0e8b65)
+
+![yyasDs3NU9Q](https://github.com/user-attachments/assets/2a420834-53fd-406a-82cd-0aecc49c4a65)

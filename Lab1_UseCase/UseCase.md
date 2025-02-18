@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/8f9103ac-55d1-4f1e-8405-7c0998fb9a5a)
+![image](https://github.com/user-attachments/assets/cf5e0a99-0d3f-459b-892a-7acabeb048c2)
+
 
 
 UseCase Диаграмма

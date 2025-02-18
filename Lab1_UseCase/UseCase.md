@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/8f9103ac-55d1-4f1e-8405-7c0998fb9a5a)
+
+
 UseCase Диаграмма
 
 Акторы:
@@ -8,5 +11,3 @@ UseCase Диаграмма
 
 Госслужащий - сотрудник МВД, обрабатывающий заявки.
 
-
-![yyasDs3NU9Q](https://github.com/user-attachments/assets/2a420834-53fd-406a-82cd-0aecc49c4a65)

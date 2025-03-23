@@ -1,4 +1,5 @@
-![Снимок экрана 2025-03-23 184323](https://github.com/user-attachments/assets/7cde05bb-4f81-400a-9656-3bf1fd950ff8)
+![Uploading image.png…]()
+
 
 # Сущности
   ## Пользователь

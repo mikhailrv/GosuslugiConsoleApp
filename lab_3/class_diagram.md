@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/bc9fbfd8-e1ae-4fbc-8239-7980876f349b)
+![image](https://github.com/user-attachments/assets/cf431331-4617-4ec5-9086-a690879809e3)
+
 
 # Модели :
 

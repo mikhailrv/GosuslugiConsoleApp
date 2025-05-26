@@ -26,3 +26,288 @@ AuthenticationController уведомляет администратора об 
 При несоответствии пароля AuthenticationService возвращает ошибку неправильного пароля.
 
 AuthenticationController сообщает администратору о неверном пароле.
+
+## 2.	Создание услуги
+![image](https://github.com/user-attachments/assets/fa48c7e2-b1d6-489d-8db8-66b35ef6d8e1)
+
+## Основной сценарий:
+1.	Администратор отправляет данные о новой услуге (название, описание, правила и др.) в AdminController.
+2.	AdminController передаёт данные в AdminService.
+3.	AdminService сохраняет услугу через ServiceRepository.
+4.	ServiceRepository делает запрос на добавление услуги в базу данных.
+5.	После успешного создания услуги база данных подтверждает добавление.
+6.	AdminService инициирует добавление правил к услуге через RuleRepository.
+7.	RuleRepository запрашивает наличие правил в базе данных.
+
+## Альтернативные сценарии:
+•	Правила найдены:
+
+База данных возвращает найденные правила.
+
+RuleRepository обновляет записи правил, привязывая их к созданной услуге.
+
+Услуга успешно создаётся вместе с прикреплёнными правилами.
+
+Администратор получает сообщение об успешном создании услуги с правилами.
+
+•	Правила не найдены:
+
+RuleRepository сообщает об ошибке отсутствия правил.
+
+Услуга создаётся без прикрепления правил.
+
+Администратор получает сообщение, что услуга создана без правил.
+
+## 3.	Редактирование услуги
+![image](https://github.com/user-attachments/assets/ce6dde2f-d841-4007-9c24-bf0a353ae4ef)
+
+## Основной сценарий:
+1.	Администратор отправляет запрос на редактирование услуги (serviceId, новое имя, новое описание, новые правила) в AdminController.
+2.	AdminController вызывает метод EditService у AdminService.
+3.	AdminService обновляет данные старой услуги через ServiceRepository
+4.	ServiceRepository обращается к базе данных и обновляет дату окончания старой услуги.
+5.	БД  возвращает найденную услугу в ServiceRepository
+6.	ServiceRepository отправляет запрос на  создание новой услуги с данными старой услуги и startdate = enddate(из старой услуги).
+7.	ServiceRepository обновляет информацию об услуге в базе данных.
+8.	После успешного обновления данных ServiceRepository сообщает об этом AdminService.
+9.	AdminService инициирует обновление правил услуги через RuleRepository.
+10.	RuleRepository делает запрос на получение новых правил из базы данных.
+
+## Альтернативные сценарии:
+
+•	Правила найдены:
+
+База данных возвращает найденные правила.
+
+RuleRepository обновляет правила, привязывая их к услуге.
+
+RuleRepository подтверждает успешное прикрепление правил.
+
+Администратор получает сообщение об успешном обновлении услуги с прикреплёнными правилами.
+
+•	Правила не найдены:
+
+RuleRepository сообщает об ошибке отсутствия правил.
+
+Услуга обновляется, но без прикрепления новых правил.
+
+Администратор получает сообщение, что услуга обновлена без правил.
+
+## 4.	Создание учетной записи сотрудника
+![image](https://github.com/user-attachments/assets/77363986-90f1-4141-a5bf-112ee2332d1f)
+
+## Основной сценарий:
+1.	Администратор отправляет данные нового пользователя (username, password, role и др.) в AdminController.
+2.	AdminController вызывает метод CreateStaffAccount в AdminService.
+3.	AdminService проверяет, свободен ли указанный логин, обратившись к UserRepository.
+4.	UserRepository делает запрос к базе данных на поиск пользователя с заданным логином.
+5.	База данных возвращает результат:
+o	Если логин свободен: 
+6. UserRepository сообщает об этом AdminService. 7. AdminService инициирует добавление нового пользователя через UserRepository. 
+8. UserRepository отправляет запрос на вставку новой записи в базу данных. 
+9. База данных подтверждает создание пользователя. 10. UserRepository уведомляет AdminService об успешном создании учетной записи. 
+11. AdminService передаёт успешный результат в AdminController. 12. AdminController сообщает администратору об успешном создании учетной записи.
+
+## Альтернативный сценарий:
+
+•	Логин занят:
+
+i.	UserRepository сообщает AdminService, что логин уже используется.
+
+ii.	AdminService отправляет в AdminController сообщение об ошибке.
+
+iii.	AdminController уведомляет администратора об ошибке: логин уже занят.
+
+# Актор:	Госслужащий.
+## 5.	Вход госслужащего в систему
+![image](https://github.com/user-attachments/assets/420af73d-2f67-4c2b-b243-89e49b45a8d0)
+
+## Основной сценарий:
+
+1.	Запрос на вход:
+Госслужащий инициирует вход в систему, отправляя запрос с логином и паролем через AuthenticationController методом Login(login, password).
+2.	Поиск пользователя в базе данных:
+AuthenticationService отправляет запрос в UserRepository для поиска пользователя по логину с помощью метода findbyEmail(login).
+В UserRepository происходит запрос в базу данных SELECT * FROM Users WHERE login = login для получения данных о пользователе.
+3.	Проверка пользователя:
+Если пользователь найден в базе данных, система переходит к проверке пароля. Для этого в AuthenticationService выполняется валидация пароля.
+Если пароль неверный, AuthenticationService возвращает ошибку в AuthenticationController, и тот выводит сообщение об ошибке "Неверный пароль" пользователю.
+4.	Успешная авторизация:
+Если пароль верный, AuthenticationService отправляет успешный ответ в AuthenticationController.
+5.	Ошибка при отсутствии пользователя:
+Если пользователь не найден в базе данных, UserRepository возвращает ошибку в AuthenticationService, и тот сообщает о том, что пользователь не найден. AuthenticationController возвращает ошибку "Пользователь не найден" пользователю.
+
+## 6.	Добавление результата по заявке
+![image](https://github.com/user-attachments/assets/9d46c773-014d-47c7-b4c9-a19e9b7a40c6)
+
+## Основной сценарий:
+1.	Запрос на обработку заявки:
+Госслужащий  отправляет запрос на обработку заявки через CivilServantController с идентификатором заявки (applicationId) и результатом (result) через метод AddResult (applicationId, result).
+2.	Обработка заявки в сервисе:
+CivilServantController передает запрос в CivilServantService для обработки заявки, вызвав метод AddResult(applicationId, result).
+3.	Поиск заявки в базе данных:
+В CivilServantService происходит запрос в репозиторий ApplicationRepository с целью получить заявку по идентификатору через метод findbyId (applicationId).
+В ApplicationRepository выполняется запрос в базу данных: SELECT * FROM Applications WHERE id = applicationId для поиска заявки.
+4.	Проверка наличия заявки:
+Если заявка найдена, данные заявки передаются обратно в CivilServantService.
+Если заявка не найдена, система возвращает ошибку в CivilServantController, уведомляя госслужащего о том, что заявка не существует.
+5.	Обновление результата заявки:
+Если заявка найдена, происходит обновление результата заявки. В CivilServantService выполняется запрос на обновление данных заявки в репозитории: UPDATE Applications SET result = result WHERE id = applicationId.
+После успешного обновления, CivilServantService возвращает подтверждение о том, что заявка была успешно обновлена.
+6.	Ответ госслужащему:
+CivilServantController получает результат из CivilServantService и отправляет уведомление госслужащему о том, что заявка была успешно обновлена.
+7.	Ошибка при отсутствии заявки:
+Если заявка не найдена в базе данных, возвращается сообщение об ошибке, и госслужащий получает уведомление о том, что заявка не существует.
+
+## 7.	Изменение статуса заявки
+![image](https://github.com/user-attachments/assets/f2604d6a-01a6-4c43-900c-8a127444b5a6)
+
+## Основной сценарий:
+1.	Запрос на изменение статуса:
+Госслужащий (актер civilServant) отправляет запрос через CivilServantController для изменения статуса заявки. Запрос включает идентификатор заявки (applicationId) и новый статус (status) через метод UpdateStatus(applicationId, status).
+2.	Обработка запроса в сервисе:
+CivilServantController передает запрос в CivilServantService, вызвав метод UpdateStatus(applicationId, status).
+3.	Поиск заявки в базе данных:
+В CivilServantService выполняется запрос в репозиторий ApplicationRepository, чтобы получить заявку по идентификатору через метод findbyId(applicationId).
+В ApplicationRepository выполняется запрос в базу данных: SELECT * FROM Applications WHERE id = applicationId для получения данных заявки.
+4.	Проверка наличия заявки:
+Если заявка найдена, данные заявки передаются обратно в CivilServantService.
+Если заявка не найдена, система возвращает ошибку в CivilServantController, уведомляя госслужащего о том, что заявка не существует.
+5.	Валидация нового статуса:
+В CivilServantService выполняется валидация нового статуса заявки. Если статус является допустимым, процесс продолжается. В случае недопустимого статуса, система возвращает ошибку о недопустимом статусе.
+6.	Обновление статуса заявки:
+Если статус допустим, в CivilServantService выполняется запрос на обновление статуса заявки в базе данных: UPDATE Applications SET status = status WHERE id = applicationId.
+После успешного обновления, система возвращает сообщение о том, что статус был успешно изменен.
+7.	Ответ госслужащему:
+CivilServantController получает результат из CivilServantService и отправляет уведомление госслужащему о том, что статус заявки был успешно обновлен.
+8.	Ошибка при недопустимом статусе или отсутствии заявки:
+Если статус заявки недопустим или заявка не найдена, возвращаются ошибки, и госслужащий получает уведомление об ошибке.
+
+## 8.	Обработка заявки на регистрацию
+![image](https://github.com/user-attachments/assets/902160ee-7308-44c6-bcba-0845619d3799)
+
+## Основной сценарий:
+1.	Сотрудник проверяет заявку через систему:
+Вызывает метод ProcessRegistrationRequest(applicationId, approved) 
+2.	Система ищет заявку:
+findbyId(applicationId) → Возвращает объект application.
+3.	Проверка статуса:
+Check Approved (approved) → Подтверждает одобрение.
+4.	Обновление статуса в БД:
+UpdateStatus(applicationId, applicationStatus) → Меняет статус заявления→ для БД: UPDATE Applications SET status = 'REJECTED' WHERE id = applicationId;
+5.	Результат:
+return Вы одобрили заявку на регистрацию → Уведомление об успешном одобрении.
+
+## Альтернативные сценарии:
+A. Заявка не одобрена:
+1.	Система возвращает:
+Return Вы не одобрили заявку на регистрацию → Статус "ОТКАЗ".
+2.	Обновление в БД:
+UPDATE Applications SET status = 'REJECTED' WHERE id = applicationId;  
+B. Заявка не найдена:
+1.	Return Ошибка: Заявление не найдено → Возвращает null.
+2.	SQL-запрос не находит данных: return null
+
+# Актор: Пользователь.
+
+## 9.	Вход пользователя
+![image](https://github.com/user-attachments/assets/5a14d6d0-a694-4802-aca7-762f67694707)
+
+## Основной сценарий:
+1.	Пользователь вводит логин/пароль → отправляет в AuthenticationController login(login, password). Контроллер принимает данные и передает их в AuthenticationService
+2.	AuthenticationService → вызывает UserRepository через findByLogin(login)
+Репозиторий ищет пользователя в базе данных
+Выполняется SQL: SELECT * FROM users WHERE login = login
+3.	При успешном нахождении пользователя:
+AuthenticationService → проводит проверку пароля CheckPassword(password)
+4.	Если пароль верный:
+AuthenticationService → Фиксирует успешную попытку входа и возвращает значение true(как успешный вход)
+5.	AuthenticationController получает ответ и передает сообщение пользователю.
+
+## Альтернативные сценарии:
+Сценарий 1: Неверный пароль
+1.	После проверки в CheckPassword(password):
+Возвращается false
+AuthenticationService передает значение false как ошибку входа
+2.	AuthenticationController передает сообщение "Неверный пароль"
+Сценарий 2: Пользователь не найден
+1.	UserRepository не находит запись → возвращает null
+2.	AuthenticationService возвращает false значение с пометкой о не найденом пользователе.
+3.	AuthenticationController → возвращает сообщение "Пользователь не найден"
+
+## 10.	Заявка на регистрацию аккаунта
+![image](https://github.com/user-attachments/assets/a0c662d7-ef9c-4b2f-8905-6c12a1dbfe42)
+
+## Основной сценарий:
+1.	Пользователь вызывает RegisterUser(login, password, fullName) в AuthenticationController
+2.	AuthenticationController передает данные через RegisterUser(login, password, fullName) в AuthenticationService
+3.	AuthenticationService выполняет:
+findbyEmail(login) - проверка существования пользователя
+SQL: SELECT * FROM User WHERE login = login
+Получает return null (пользователь не найден)
+4.	AuthenticationService создает пользователя:
+save(user) - сохранение нового пользователя
+SQL: INSERT INTO User (login, password, fullName) VALUES (...)
+Получает return user (созданный пользователь)
+5.	Возврат цепочки:
+AuthenticationService → AuthenticationController: return user
+AuthenticationController → Пользователь: "Вы успешно подали заявку на регистрацию"
+
+## Альтернативный сценарий (пользователь существует):
+1.	При проверке findbyEmail(login):
+SQL-запрос находит существующую запись
+Возвращается return user (существующий пользователь)
+2.	AuthenticationService прерывает процесс:
+Возвращает ошибку: "Пользователь зарегистрирован, попробуйте зайти или другой логин"
+3.	AuthenticationController показывает сообщение об ошибке пользователю
+
+## 11.	Подать заявление на оказание услуги
+![image](https://github.com/user-attachments/assets/57fe807a-ba44-40e1-85f1-e0e2c1c02d56)
+
+## Основной сценарий (успешное создание заявки):
+1.	Пользователь вызывает метод GetAllActivesServices()для начала процесса
+Система возвращает return Service (список доступных услуг)
+2.	Система выполняет поиск услуг:
+SQL: SELECT * FROM Services
+Возвращает список return Services
+3.	Пользователь выбирает услугу через SubmitApplication (application)
+4.	Система создает заявку:
+SQL: INSERT INTO Applications (...) VALUES (...)
+Возвращает данные заявки (return applicationData)
+
+## Альтернативный сценарий (услуга не найдена):
+1.	При попытке выбора услуги система возвращает:
+"Нужная услуга не была найдена"
+
+## 12.	Отмена заявления на услугу
+![image](https://github.com/user-attachments/assets/d9acf468-a680-49b7-9c98-071026034270)
+
+## Основной сценарий:
+1.	Пользователь инициирует запрос на отмену заявки с помощью метода CancelApplication(applicationId) в UserController.
+2.	UserController вызывает метод CancelApplication(applicationId) в UserService.
+3.	В UserService происходит запрос в ApplicationRepository для поиска заявки по ID (findbyId(applicationId)).
+4.	ApplicationRepository делает SQL-запрос в базу данных для получения данных о заявке:
+SELECT * FROM Applications WHERE id = applicationId
+5.	Если заявка найдена:
+В UserService обновляется статус заявки на "CANCELED" и этот статус сохраняется в базе данных с помощью запроса UPDATE Applications SET status = 'CANCELED' WHERE id = applicationId.
+База данных подтверждает успешное обновление.
+6.	Если заявка не найдена, UserService отправляет ошибку обратно в UserController.
+7.	UserController возвращает пользователю сообщение о том, что заявка отменена, либо что заявка не найдена.
+
+## 13.	Узнать статус заявления
+![image](https://github.com/user-attachments/assets/3547777c-cd92-4458-8188-7b72949dff69)
+
+## Основной сценарий:
+1.	User получает статус заявки, передавая ApplicationController идентификатор заявки.
+2.	ApplicationController вызывает GetStatus из ApplicationService, который в свою очередь вызывает findbyId из ApplicationRepository, и далее возвращается результат запроса к БД.
+3.	БД возвращает, найденную заявку заявку.
+4.	ApplicationService возвращается её статус.
+5.	ApplicationController выводит статус заявки
+## Альтернативные сценарии:
+Заявка не существует :
+
+БД возвращает пустое значение.
+
+ApplicationService возвращает ошибку.
+
+ApplicationController возвращает сообщение об ошибке, что заявка не найдена.

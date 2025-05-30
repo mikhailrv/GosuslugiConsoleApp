@@ -119,7 +119,8 @@
 
 
 ## 4.	Создание учетной записи сотрудника
-![image](https://github.com/user-attachments/assets/4a373a5f-e8fe-4a66-8747-893e83255714)
+![image](https://github.com/user-attachments/assets/ae144ecb-0e2b-4b4d-9089-a258db0ad46a)
+
 
 
 

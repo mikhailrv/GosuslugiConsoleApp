@@ -167,7 +167,7 @@
 
 2. AuthenticationService возвращает ошибку "пользователь не найден".
 
-3. AuthenticationController уведомляет администратора об ошибке.
+3. AuthenticationController уведомляет госслужащего об ошибке.
 
 •	Неверный пароль:
 

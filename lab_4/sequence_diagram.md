@@ -75,7 +75,7 @@
 
 
 ## Основной сценарий:
-1.	Администратор отправляет запрос на редактирование услуги (serviceId, новое имя, новое описание, новые правила) в AdminController.
+1.	Администратор отправляет запрос на редактирование услуги в AdminController.
 2.	AdminController вызывает метод EditService у AdminService.
 3.	AdminService делает поиск по serviceId на наличие услуги.
 4.	ServiceRepository создает запрос на поиск услуги, в случае если она нашлась возвращает её в AdminService.

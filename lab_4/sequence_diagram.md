@@ -237,7 +237,8 @@ CivilServantController получает результат из CivilServantServ
 # Актор: Пользователь.
 
 ## 8.	Вход пользователя
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/a3970535-cab4-44d1-a756-6d817be972f6)
+
 
 
 

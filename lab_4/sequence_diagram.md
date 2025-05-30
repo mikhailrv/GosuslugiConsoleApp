@@ -210,7 +210,7 @@ CivilServantController получает результат из CivilServantServ
 
 ## Основной сценарий:
 1.	Запрос на изменение статуса:
-Госслужащий (актер civilServant) отправляет запрос через CivilServantController для изменения статуса заявки. Запрос включает идентификатор заявки (applicationId) и новый статус (status) через метод UpdateStatus(applicationId, status).
+Госслужащий отправляет запрос через CivilServantController для изменения статуса заявки. Запрос включает идентификатор заявки (applicationId) и новый статус (status) через метод UpdateStatus(applicationId, status).
 2.	Обработка запроса в сервисе:
 CivilServantController передает запрос в CivilServantService, вызвав метод UpdateStatus(applicationId, status).
 3.	Поиск заявки в базе данных:
@@ -270,27 +270,25 @@ CivilServantController получает результат из CivilServantServ
 
 
 ## Основной сценарий:
-1.	Пользователь вызывает RegisterUser(login, password, fullName) в AuthenticationController
-2.	AuthenticationController передает данные через RegisterUser(login, password, fullName) в AuthenticationService
+1.	Пользователь вызывает RegisterUser(login, password, fullName) в AuthenticationController.
+2.	AuthenticationController передает данные через RegisterUser(login, password, fullName) в AuthenticationService.
 3.	AuthenticationService выполняет:
 findbyLogin(login) - проверка существования пользователя
-SQL: SELECT * FROM User WHERE login = login
-Получает return null (пользователь не найден)
+SQL: SELECT * FROM User WHERE login = login.
+Получает return null (пользователь не найден).
 4.	AuthenticationService создает пользователя:
 save(user) - сохранение нового пользователя
-SQL: INSERT INTO User (login, password, fullName) VALUES (login, password, fullName)
-Получает return user (созданный пользователь)
-5.	Возврат цепочки:
-AuthenticationService → AuthenticationController: return user
-AuthenticationController → Пользователь: "Вы успешно подали заявку на регистрацию"
+SQL: INSERT INTO User (login, password, fullName) VALUES (login, password, fullName).
+5.	AuthenticationService → AuthenticationController: return user.
+AuthenticationController → Пользователь: "Вы успешно подали заявку на регистрацию".
 
 ## Альтернативный сценарий (пользователь существует):
 1.	При проверке findbyLogin(login):
-SQL-запрос находит существующую запись
-Возвращается существующий пользователь
+SQL-запрос находит существующую запись.
+Возвращается существующий пользователь.
 2.	AuthenticationService прерывает процесс:
-Возвращает ошибку: "Пользователь с данным логином уже зарегистрирован"
-3.	AuthenticationController показывает сообщение об ошибке пользователю
+Возвращает ошибку: "Пользователь с данным логином уже зарегистрирован".
+3.	AuthenticationController показывает сообщение об ошибке пользователю.
 
 ## 10.	Подать заявление на оказание услуги
 ![image](https://github.com/user-attachments/assets/b96ea208-7ad1-4a41-a283-e16b8dc19435)
@@ -303,13 +301,13 @@ SQL-запрос находит существующую запись
 
 
 ## Основной сценарий (успешное создание заявки):
-1.	Пользователь вызывает метод SubmitApplication(serviceid, userid) в UserController
-2.	UserController передает данные в UserService
-3.	UserService вызывает FindById(userId) в репозитории, который делает запрос к БД: SELECT * FROM User WHERE id = userId
-4.	БД возвращает данные пользователя
-5.	UserService получает даные услуги через ServiceRepository, который делает запрос к БД: SELECT * FROM services WHERE id = serviceId
-6. 	Если услуга найдена, то создается объект заявки, который ApplicationRepository сохраняет в БД
-7. 	Пользователь получает сообщение о том, что заявка создана
+1.	Пользователь вызывает метод SubmitApplication(serviceid, userid) в UserController.
+2.	UserController передает данные в UserService.
+3.	UserService вызывает FindById(userId) в репозитории, который делает запрос к БД: SELECT * FROM User WHERE id = userId.
+4.	БД возвращает данные пользователя.
+5.	UserService получает даные услуги через ServiceRepository, который делает запрос к БД: SELECT * FROM services WHERE id = serviceId.
+6. 	Если услуга найдена, то создается объект заявки, который ApplicationRepository сохраняет в БД.
+7. 	Пользователь получает сообщение о том, что заявка создана.
 
 ## Альтернативный сценарий (услуга не найдена):
 1.	Пользователь получает сообщение: "Услуга не найдена"
@@ -334,14 +332,15 @@ SELECT * FROM Applications WHERE id = applicationId
 7.	UserController возвращает пользователю сообщение о том, что заявка отменена, либо что заявка не найдена.
 
 ## 12.	Узнать статус заявления
-![image](https://github.com/user-attachments/assets/b7509d35-a409-4d36-a03d-522c74edf3f4)
+![image](https://github.com/user-attachments/assets/e546ae97-4ea0-496d-8277-681778a77af4)
+
 
 
 
 
 ## Основной сценарий:
 1.	User получает статус заявки, передавая ApplicationController идентификатор заявки.
-2.	ApplicationController вызывает GetApplicationStatus из ApplicationService, который в свою очередь вызывает findbyId из ApplicationRepository, и далее возвращается результат запроса к БД.
+2.	ApplicationController вызывает GetApplicationStatus из ApplicationService, который в свою очередь вызывает findbyId из ApplicationRepository.
 3.	БД возвращает найденную заявку.
 4.	ApplicationService возвращает её статус.
 5.	ApplicationController передает статус заявки пользователю.

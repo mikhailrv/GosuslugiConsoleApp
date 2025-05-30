@@ -1,6 +1,7 @@
 # Актор:	Администратор 
 ## 1.	Вход администратора
-![image](https://github.com/user-attachments/assets/badf3b6d-9668-4649-96f6-335496b014e1)
+![image](https://github.com/user-attachments/assets/516fffdf-c8da-4862-80a9-b598a3e4b7e8)
+
 
 
 

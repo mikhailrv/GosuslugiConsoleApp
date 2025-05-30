@@ -1,6 +1,7 @@
 # Актор:	Администратор 
 ## 1.	Вход администратора
-![image](https://github.com/user-attachments/assets/71b99642-c2d3-4fde-9f5f-8369509da251)
+![image](https://github.com/user-attachments/assets/badf3b6d-9668-4649-96f6-335496b014e1)
+
 
 
 
@@ -68,7 +69,10 @@
 3. Администратор получает сообщение, что услуга создана без правил.
 
 ## 3.	Редактирование услуги
-![image](https://github.com/user-attachments/assets/919a5328-a021-4b92-95fd-a688fcb369fc)
+![image](https://github.com/user-attachments/assets/89af6576-f4cd-4487-be47-3b80e2f8c38a)
+
+
+
 
 
 
@@ -145,7 +149,8 @@
 
 # Актор:	Госслужащий.
 ## 5.	Вход госслужащего в систему
-![image](https://github.com/user-attachments/assets/55f22d82-f38f-4bac-b04b-f023e3212571)
+![image](https://github.com/user-attachments/assets/2279d4b2-96cd-4fcd-9b0d-35273bd2eee9)
+
 
 
 
@@ -232,7 +237,8 @@ CivilServantController получает результат из CivilServantServ
 # Актор: Пользователь.
 
 ## 8.	Вход пользователя
-![image](https://github.com/user-attachments/assets/6109fdd1-cfe2-450e-8fcb-7827321fc5ca)
+![Uploading image.png…]()
+
 
 
 

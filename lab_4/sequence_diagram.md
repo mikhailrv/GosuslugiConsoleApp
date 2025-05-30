@@ -83,9 +83,8 @@
 6.	ServiceRepository обращается к базе данных и обновляет дату окончания старой услуги.
 7.	БД  возвращает найденную услугу в ServiceRepository
 8.	ServiceRepository отправляет запрос на  создание новой услуги.
-9.	ServiceRepository обновляет информацию об услуге в базе данных.
-10.	После успешного обновления данных ServiceRepository сообщает об этом AdminService.
-11.	AdminService инициирует обновление правил услуги через RuleRepository.
+9.	После успешного создания услуги ServiceRepository передает AdminService id новой услуги.
+10.	AdminService инициирует обновление правил услуги через RuleRepository.
 
 ## Альтернативные сценарии:
 •	Правила найдены:

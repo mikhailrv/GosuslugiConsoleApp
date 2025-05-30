@@ -263,7 +263,8 @@ CivilServantController получает результат из CivilServantServ
 2. AuthenticationController сообщает пользователю о неверном пароле.
 
 ## 9.	Заявка на регистрацию аккаунта
-![image](https://github.com/user-attachments/assets/1b9a1395-908a-4918-a2ec-1aa75586bab1)
+![image](https://github.com/user-attachments/assets/19eab26a-0f63-4b8f-8f6e-828c1a2bf0d9)
+
 
 
 

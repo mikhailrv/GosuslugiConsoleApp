@@ -125,14 +125,13 @@
 2.	AdminController вызывает метод CreateStaffAccount в AdminService.
 3.	AdminService проверяет, свободен ли указанный логин, обратившись к UserRepository.
 4.	UserRepository делает запрос к базе данных на поиск пользователя с заданным логином.
-5.	Если логин свободен: 
-6. UserRepository сообщает об этом AdminService.
-7. AdminService инициирует добавление нового пользователя через UserRepository. 
-8. UserRepository отправляет запрос на вставку новой записи в базу данных. 
-9. База данных подтверждает создание пользователя.
-10. UserRepository уведомляет AdminService об успешном создании учетной записи. 
-11. AdminService передаёт успешный результат в AdminController.
-12. AdminController сообщает администратору об успешном создании учетной записи.
+5.	Если логин свободен: UserRepository сообщает об этом AdminService.
+6. AdminService инициирует добавление нового пользователя через UserRepository. 
+7. UserRepository отправляет запрос на вставку новой записи в базу данных. 
+8. База данных подтверждает создание пользователя.
+9. UserRepository уведомляет AdminService об успешном создании учетной записи. 
+10. AdminService передаёт успешный результат в AdminController.
+11. AdminController сообщает администратору об успешном создании учетной записи.
 
 ## Альтернативный сценарий:
 

@@ -32,7 +32,8 @@
 2. AuthenticationController сообщает администратору о неверном пароле.
 
 ## 2.	Создание услуги
-![image](https://github.com/user-attachments/assets/c6766ef1-13f6-486e-b7cc-61f12ff64ac6)
+![image](https://github.com/user-attachments/assets/13b3c049-f30e-4094-adc5-b2c2d3953f65)
+
 
 
 
@@ -61,9 +62,9 @@
 
 1. RuleRepository сообщает об отсутствии правил.
 
-2. Услуга не создается.
+2. Услуга создается без правил.
 
-3. Администратор получает сообщение, что об ошибке выбора несуществующих правил.
+3. Администратор получает сообщение, что услуга создана без правил.
 
 ## 3.	Редактирование услуги
 ![image](https://github.com/user-attachments/assets/62d7e98a-6814-488c-a31d-2e5c299b7bcf)

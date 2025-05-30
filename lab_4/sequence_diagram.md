@@ -68,7 +68,8 @@
 3. Администратор получает сообщение, что услуга создана без правил.
 
 ## 3.	Редактирование услуги
-![image](https://github.com/user-attachments/assets/62d7e98a-6814-488c-a31d-2e5c299b7bcf)
+![image](https://github.com/user-attachments/assets/919a5328-a021-4b92-95fd-a688fcb369fc)
+
 
 
 

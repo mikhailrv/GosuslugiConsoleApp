@@ -197,7 +197,7 @@
 2.	Обработка заявки в сервисе:
 CivilServantController передает запрос в CivilServantService для обработки заявки, вызвав метод AddResultToApplication(applicationId, result).
 3.	Поиск заявки в базе данных:
-В CivilServantService происходит запрос в репозиторий ApplicationRepository с целью получить заявку по идентификатору через метод findbyId (applicationId).
+В CivilServantService происходит запрос в репозиторий ApplicationRepository с целью получить заявку по идентификатору через метод FindById (applicationId).
 В ApplicationRepository выполняется запрос в базу данных: SELECT * FROM Applications WHERE id = applicationId для поиска заявки.
 4.	Проверка наличия заявки:
 Если заявка найдена, данные заявки передаются обратно в CivilServantService.
@@ -222,7 +222,7 @@ CivilServantController получает результат из CivilServantServ
 2.	Обработка запроса в сервисе:
 CivilServantController передает запрос в CivilServantService, вызвав метод UpdateStatus(applicationId, status).
 3.	Поиск заявки в базе данных:
-В CivilServantService выполняется запрос в репозиторий ApplicationRepository, чтобы получить заявку по идентификатору через метод findbyId(applicationId).
+В CivilServantService выполняется запрос в репозиторий ApplicationRepository, чтобы получить заявку по идентификатору через метод FindById(applicationId).
 В ApplicationRepository выполняется запрос в базу данных: SELECT * FROM Applications WHERE id = applicationId для получения данных заявки.
 4.	Проверка наличия заявки:
 Если заявка найдена, данные заявки передаются обратно в CivilServantService.
@@ -283,7 +283,7 @@ CivilServantController получает результат из CivilServantServ
 1.	Пользователь вызывает RegisterUser(login, password, fullName) в AuthenticationController.
 2.	AuthenticationController передает данные через RegisterUser(login, password, fullName) в AuthenticationService.
 3.	AuthenticationService выполняет:
-findbyLogin(login) - проверка существования пользователя
+FindByLogin(login) - проверка существования пользователя
 SQL: SELECT * FROM User WHERE login = login.
 Получает return null (пользователь не найден).
 4.	AuthenticationService создает пользователя:
@@ -293,7 +293,7 @@ SQL: INSERT INTO User (login, password, fullName) VALUES (login, password, fullN
 AuthenticationController → Пользователь: "Вы успешно подали заявку на регистрацию".
 
 ## Альтернативный сценарий (пользователь существует):
-1.	При проверке findbyLogin(login):
+1.	При проверке FindByLogin(login):
 SQL-запрос находит существующую запись.
 Возвращается существующий пользователь.
 2.	AuthenticationService прерывает процесс:

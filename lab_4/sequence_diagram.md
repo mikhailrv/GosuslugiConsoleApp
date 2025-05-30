@@ -294,7 +294,8 @@ SQL-запрос находит существующую запись
 3.	AuthenticationController показывает сообщение об ошибке пользователю
 
 ## 10.	Подать заявление на оказание услуги
-![image](https://github.com/user-attachments/assets/bdb73987-5195-4310-89b9-1c3d775a6a26)
+![image](https://github.com/user-attachments/assets/b96ea208-7ad1-4a41-a283-e16b8dc19435)
+
 
 
 

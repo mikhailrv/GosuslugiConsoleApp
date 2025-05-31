@@ -1,4 +1,6 @@
-![image](https://github.com/user-attachments/assets/19884d28-da7f-4d49-9339-b3e094e6f87d)
+![image](https://github.com/user-attachments/assets/56e0c112-248f-4d1b-a141-7ba05fb3e56a)
+
+
 
 ## users — Пользователь системы
 Объединяет **граждан**, **госслужащих** и **администраторов**:

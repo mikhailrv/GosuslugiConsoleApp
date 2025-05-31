@@ -13,7 +13,7 @@
 - `full_name` — имя, фамилия, отчество.  
 - `login` — логин.  
 - `password` — хэш пароля.  
-- `role` — определяет права: `citizen`, `officer`, `admin`.  
+- `role` — определяет права: `citizen`, `civilservant`, `admin`.  
 
 **Связи:**
 

@@ -1,4 +1,4 @@
-# Схема базы данных
+# Схема данных в БД
 ![image](https://github.com/user-attachments/assets/d7da0f17-7fae-45db-9840-e593ddb56e18)
 
 

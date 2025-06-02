@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GosuslugiWinForms", "GosuslugiWinForms.csproj", "{43D548C8-049B-4F45-A3EA-8832C3200E53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43D548C8-049B-4F45-A3EA-8832C3200E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D548C8-049B-4F45-A3EA-8832C3200E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D548C8-049B-4F45-A3EA-8832C3200E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D548C8-049B-4F45-A3EA-8832C3200E53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBB5307C-0462-41B0-8BEE-A19CEBCB7E91}
+	EndGlobalSection
+EndGlobal
